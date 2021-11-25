@@ -121,7 +121,8 @@ else()
 endif()
 
 if(NOT DEFINED CMAKE_BUILD_TYPE)
-	message(FATAL_ERROR "You need to define CMAKE_BUILD_TYPE")
+	set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel." FORCE)
+	#message(FATAL_ERROR "You need to define CMAKE_BUILD_TYPE")
 endif()
 
 if(${ANKI_CPU_ADDR_SPACE} STREQUAL "0" OR ${ANKI_CPU_ADDR_SPACE} STREQUAL "64")
@@ -191,7 +192,6 @@ if(NOT MSVC)
 else()
 	#ProcessorCount(PC)
 	#add_definitions("/MP${PC}")
-
 	if(${CMAKE_BUILD_TYPE} STREQUAL "Release" OR ${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
 		#add_definitions("/Ox")
 	endif()
@@ -425,4 +425,4 @@ endif()
 if(ANKI_BUILD_SAMPLES)
 	add_subdirectory(Samples)
 endif()
-
+add_subdirectory(AnKiEditor)

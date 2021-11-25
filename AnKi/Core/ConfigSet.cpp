@@ -4,14 +4,14 @@
 // http://www.anki3d.org/LICENSE
 
 #include <AnKi/Core/ConfigSet.h>
-#include <AnKi/Util/Xml.h>
-#include <AnKi/Util/Logger.h>
 #include <AnKi/Util/File.h>
+#include <AnKi/Util/Logger.h>
+#include <AnKi/Util/Xml.h>
 
 // Used by the config options
-#include <AnKi/Util/System.h>
 #include <AnKi/Math.h>
 #include <AnKi/Shaders/Include/ClusteredShadingTypes.h>
+#include <AnKi/Util/System.h>
 
 namespace anki
 {
@@ -67,10 +67,10 @@ ConfigSet::ConfigSet()
 
 #define ANKI_CONFIG_OPTION(name, ...) newOption(ANKI_STRINGIZE(name), __VA_ARGS__);
 #include <AnKi/Core/ConfigDefs.h>
-#include <AnKi/Resource/ConfigDefs.h>
-#include <AnKi/Renderer/ConfigDefs.h>
-#include <AnKi/Scene/ConfigDefs.h>
 #include <AnKi/Gr/ConfigDefs.h>
+#include <AnKi/Renderer/ConfigDefs.h>
+#include <AnKi/Resource/ConfigDefs.h>
+#include <AnKi/Scene/ConfigDefs.h>
 #undef ANKI_CONFIG_OPTION
 }
 
@@ -281,6 +281,7 @@ CString ConfigSet::getString(CString optionName) const
 {
 	const Option& o = find(optionName);
 	ANKI_ASSERT(o.m_type == Option::STRING);
+	CString s = o.m_str.toCString();
 	return o.m_str.toCString();
 }
 
